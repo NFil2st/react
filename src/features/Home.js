@@ -1,12 +1,14 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import Product from "../features/Product/index";
 import AddForm from "../features/Product/AddForm";
 // import data from "../app/data";
 import axios from 'axios';
+import styled from "styled-components";
+import PropTypes from 'prop-types';
 
 let currentProductId = 9;
 
-function Home() {
+function Home({ className }) {
   const [products, setProducts] = useState([]);
   // const [products, setProducts] = useState(data);
 useEffect(() => {
@@ -26,7 +28,7 @@ useEffect(() => {
   };
 
   return (
-    <>
+    <div className={className}>
       <h1>New Products</h1>
 
       {products.length > 0 ? (
@@ -40,8 +42,21 @@ useEffect(() => {
       )}
 
       <AddForm addProduct={addProduct} />
-    </>
+    </div>
   );
 }
 
-export default Home;
+Home.propTypes = {
+  className: PropTypes.string,
+};
+
+export default styled(Home)`
+  .Home__products {
+    display: flex;
+    flex-wrap: wrap;
+
+    list-style-type: none;
+    padding: 0;
+    margin: 0 -12px;
+  }
+`;

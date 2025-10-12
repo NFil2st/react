@@ -1,11 +1,20 @@
-import React from 'react';
+import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
- function Container({ children }) {
+ function Container({ className, children }) {
   return (
-    <div> 
-        <main>{children}</main>
+    <div className={className}> 
+      <main>{children}</main>
     </div>
   );
- }
+}
 
-  export default Container;
+ Container.propTypes = {
+  className: PropTypes.string,
+};
+
+export default styled(Container)`
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 4rem 0;
+`;
